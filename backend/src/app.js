@@ -20,6 +20,15 @@ import userProfileRouter from "./routes/userProfile.routes.js";
 app.use("/api/v1/users",userRouter)
 app.use("/api/v1/userProfile",userProfileRouter)
 
+app.use((err, req, res, next) => {
+  console.error("Express Error:", err); // Optional: log to server console
+
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode).json({
+    success: false,
+    message: err.message || "Internal Server Error",
+  });
+});
 
 
 

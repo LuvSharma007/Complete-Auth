@@ -9,7 +9,7 @@ import ApiResponse from "../utils/ApiResponse.js"
 
 const configureProfile = asyncHandler(async(req,res)=>{
     // get data from req.body
-    // ger user from req.user
+    // get user from req.user
     // check for images 
     // upload them on cloudinary
     // configure profile

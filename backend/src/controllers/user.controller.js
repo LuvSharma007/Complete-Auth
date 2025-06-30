@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async(req,res)=>{
             field?.trim() === ""
         })
     ){
-        throw new ApiError(400,"All fields are reuired");
+        throw new ApiError(400,"All fields are required");
     }
 
     const existedUser = await User.findOne({
@@ -218,13 +218,13 @@ const updatePassword = asyncHandler(async(req,res)=>{
     if(!isPasswordMatched){
         throw new ApiError(400,"old password is incorrect")
     }
-    console.log("oldPassword",isPasswordMatched);
+    // console.log("oldPassword",isPasswordMatched);
     
     
     
     user.password = newPassword
     await user.save();
-    console.log("newPassword",newPassword);
+    // console.log("newPassword",newPassword);
 
     return res.status(200).json(
         new ApiResponse(200,"Password changed successfully")
