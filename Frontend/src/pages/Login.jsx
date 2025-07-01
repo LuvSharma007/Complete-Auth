@@ -1,5 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import {useDispatch} from "react-redux"
+import {login} from "../store/authSlice"
+import {useNavigate} from "react-router-dom"
 
 const Login = () => {
   const [form, setForm] = useState(
@@ -10,7 +13,9 @@ const Login = () => {
     }
 );
 
-    const [error,setError] = useState('')
+    const [error,setError] = useState('');
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,9 +25,12 @@ const Login = () => {
     e.preventDefault();
     setError('');
     try {
-        const userCreated = await axios.post("/api/v1/users/login", form);
-        if(userCreated){
-            alert("registered successfully!");
+        const loginUser = await axios.post("/api/v1/users/login", form);
+        if(loginUser){
+            alert("login successfully!");
+            console.log(loginUser.data.data.user);            
+            dispatch(login(loginUser.data.data.user))
+            navigate("/");
         }
     } catch (error) {
         if(error.response && error.response.data?.message){
@@ -30,7 +38,7 @@ const Login = () => {
         }else{
             setError('Something went wrong , please try again')
         }
-        console.log("Error signup user",error);
+        console.log("Error login user",error);
     }
   };
 
@@ -71,7 +79,7 @@ const Login = () => {
             type="submit"
             className="mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
           >
-            Submit
+            Login
           </button>
         </form>
       </div>
