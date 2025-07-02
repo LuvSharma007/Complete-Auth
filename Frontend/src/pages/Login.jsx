@@ -30,7 +30,7 @@ const Login = () => {
             alert("login successfully!");
             console.log(loginUser.data.data.user);            
             dispatch(login(loginUser.data.data.user))
-            navigate("/");
+            navigate("/profile");
         }
     } catch (error) {
         if(error.response && error.response.data?.message){
@@ -43,7 +43,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 border-red-600">
       <div className="w-full max-w-md bg-white p-8 rounded shadow-md">
         <h1 className="text-3xl font-semibold text-center mb-6">Login</h1>
         {error && <p className="text-red-500 bg-red-100 p-2 text-center rounded">{error}</p>}

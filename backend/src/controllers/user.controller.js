@@ -231,6 +231,15 @@ const updatePassword = asyncHandler(async(req,res)=>{
     )
 })
 
+const getCurrentUser = asyncHandler(async(req,res)=>{
+    try {
+        return res.status(200)
+        .json(new ApiResponse(200,req.user,"Current User fetched successfully"))
+    } catch (error) {
+        throw new ApiError(400,"User not found",error);
+    }
+})
+
 
 
 
@@ -239,5 +248,6 @@ export {
     loginUser,
     logoutUser,
     refreshAccessToken,
-    updatePassword
+    updatePassword,
+    getCurrentUser
 };
