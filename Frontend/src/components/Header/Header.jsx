@@ -27,7 +27,7 @@ const Header = () => {
     {
       name:'Profile',
       slug:'/profile',
-      active:true
+      active:authStatus
     },
   ]
 
@@ -36,7 +36,7 @@ const Header = () => {
     <header className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <h1 className="text-xl font-bold text-blue-600 cursor-pointer" onClick={() => navigate('/')}>
-          MyAuthApp
+          AuthFlow
         </h1>
         <nav>
           <ul className="flex gap-6 items-center">

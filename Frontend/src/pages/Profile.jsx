@@ -8,8 +8,6 @@ const Profile = () => {
  
     const dispatch = useDispatch();
     const [Profile , SetProfile] = useState(null);
-    const userStatus = useSelector(state => state.auth.status)
-
 
     useEffect(()=>{
         const getUserProfile = async()=>{
@@ -34,11 +32,6 @@ const Profile = () => {
             <h1>username:{Profile.username}</h1>
             <h1>email:{Profile.email}</h1>
         </div> ) : null }
-        {userStatus ? (<div>
-            <h1>...Loading Profile</h1>
-        </div>): <p className='text-center mt-10'>
-            Please Login to configure your profile
-        </p> }
     </div>
   )
 }

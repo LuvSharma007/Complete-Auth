@@ -4,10 +4,9 @@ const Footer = () => {
   return (
     <footer className="bg-gray-100 text-gray-600 mt-10 border-t">
       <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center flex-wrap">
-        <p className="text-sm">&copy; {new Date().getFullYear()} MyAuthApp. All rights reserved.</p>
+        <p className="text-sm">&copy; {new Date().getFullYear()} AuthFlow. All rights reserved.</p>
         <div className="flex gap-4 text-sm">
           <a href="/" className="hover:text-blue-600">Home</a>
-          <a href="/contact" className="hover:text-blue-600">Contact</a>
         </div>
       </div>
     </footer>
