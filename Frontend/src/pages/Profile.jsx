@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../store/authSlice'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
 
  
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const [Profile , SetProfile] = useState(null);
 
     useEffect(()=>{
@@ -25,13 +27,18 @@ const Profile = () => {
         getUserProfile();
     },[])
 
+
+
   return (
-    <div>
-        {Profile ? ( <div>
+    <div className='text-center m-10'>
+        {Profile ? ( <div className='text-2xl'>
             <h1>name:{Profile.fullname}</h1>
             <h1>username:{Profile.username}</h1>
             <h1>email:{Profile.email}</h1>
         </div> ) : null }
+        <button 
+        className='border-2 bg-blue-500 text-white rounded w-25 h-8 m-5 cursor-pointer'
+        onClick={()=>{navigate("/edit-profile")}}>Edit Profile</button>
     </div>
   )
 }

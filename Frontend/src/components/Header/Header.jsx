@@ -29,6 +29,11 @@ const Header = () => {
       slug:'/profile',
       active:authStatus
     },
+    {
+      name:"EditProfile",
+      slug:'/edit-profile',
+      active:authStatus
+    }
   ]
 
 

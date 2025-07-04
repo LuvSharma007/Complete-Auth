@@ -83,7 +83,7 @@ const Signup = () => {
             type="submit"
             className="mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
           >
-            Register
+            Create Account
           </button>
         </form>
       </div>
