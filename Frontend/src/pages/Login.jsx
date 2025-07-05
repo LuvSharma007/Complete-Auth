@@ -25,7 +25,9 @@ const Login = () => {
     e.preventDefault();
     setError('');
     try {
-        const loginUser = await axios.post("/api/v1/users/login", form);
+        const loginUser = await axios.post("/api/v1/users/login",form,{
+          withCredentials:true
+        });
         if(loginUser){
             alert("login successfully!");
             console.log(loginUser.data.data.user);            

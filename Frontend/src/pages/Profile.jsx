@@ -9,23 +9,33 @@ const Profile = () => {
  
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const [Profile , SetProfile] = useState(null);
+    const [Profile , setProfile] = useState(null);
+    const user = useSelector(state=>state.auth.userData);
 
-    useEffect(()=>{
+
+   useEffect(()=>{
         const getUserProfile = async()=>{
             try {
-                const currentUser = await axios.get("/api/v1/users/current-user")
+
+                const currentUser = await axios.get("/api/v1/users/current-user",{
+                    withCredentials:true
+                })
                 if(currentUser.data){
-                    dispatch(login(currentUser.data));
-                    SetProfile(currentUser.data.data);
+                    dispatch(login(currentUser.data.data));
+                    setProfile(currentUser.data.data);
                     console.log(currentUser.data);
                 }
             } catch (error) {
                 console.log('Error getting user Profile',error);                
             }
         }
-        getUserProfile();
-    },[])
+
+        if(!user){
+            getUserProfile();
+        }else{
+            setProfile(user);
+        }
+    },[user , dispatch])
 
 
 

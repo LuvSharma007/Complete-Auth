@@ -12,7 +12,9 @@ const Home = () => {
    useEffect(() => {
     const getCurrentUser = async () => {
       try {
-        const loginUser = await axios.get('/api/v1/users/current-user');
+        const loginUser = await axios.get('/api/v1/users/current-user',{
+          withCredentials:true
+        });
         if(loginUser.data && !authStatus){
           dispatch(login(loginUser.data.data))
           console.log("Login user found",loginUser.data.data);          
