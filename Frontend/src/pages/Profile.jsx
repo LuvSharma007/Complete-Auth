@@ -40,7 +40,7 @@ const Profile = () => {
   return (
     <div className="max-w-3xl mx-auto p-4">
       {localProfile ? (
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="bg-white shadow-md rounded-lg overflow-hidden border-2">
           <img src={localProfile.coverImage?.url} alt="Cover" className="w-full h-40 object-cover" />
 
           <div className="flex items-center space-x-4 p-4">

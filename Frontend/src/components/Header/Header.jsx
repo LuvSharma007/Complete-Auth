@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <header className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-blue-600 cursor-pointer" onClick={() => navigate('/')}>
+        <h1 className="text-xl font-bold text-blue-500 cursor-pointer" onClick={() => navigate('/')}>
           AuthFlow
         </h1>
         <nav>

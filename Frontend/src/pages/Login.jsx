@@ -45,11 +45,12 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 border-red-600">
-      <div className="w-full max-w-md bg-white p-8 rounded shadow-md">
-        <h1 className="text-3xl font-semibold text-center mb-6">Login</h1>
-        {error && <p className="text-red-500 bg-red-100 p-2 text-center rounded">{error}</p>}
-        <form onSubmit={handleSubmit} className="space-y-4 flex flex-col">
+
+<div className="min-h-screen flex items-center justify-center bg-black text-white px-4">
+  <div className="w-full max-w-md text-white p-8 rounded shadow-md">
+    <h1 className="text-3xl font-semibold text-center mb-6">Login</h1>
+    {error && <p className="text-red-500 bg-red-100 p-2 text-center rounded">{error}</p>}
+    <form onSubmit={handleSubmit} className="space-y-4 flex flex-col">
           <label className="flex flex-col">
             <span className="mb-1">Email:</span>
             <input

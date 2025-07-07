@@ -1,4 +1,5 @@
 import React from 'react'
+import './index.css'
 import  {Routes , Route ,BrowserRouter } from "react-router-dom"
 import {Login , Signup , Home,Profile, EditProfile} from "./pages/index"
 import Layout from './components/Layout'
