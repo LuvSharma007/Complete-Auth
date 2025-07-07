@@ -27,7 +27,7 @@ const configureProfile = asyncHandler(async (req, res) => {
 
     const existedUser = await UserProfile.findOne({ user: user._id })
     if (existedUser) {
-        return res.status(404), json(new ApiResponse(400, null, "Cannot configure more than once !"))
+        return res.status(404).json(new ApiResponse(400, null, "Cannot configure more than once !"))
     }
     const ProfileImageLocalPath = req.files?.profileImage[0]?.path
     const coverImageLocalPath = req.files?.coverImage[0]?.path
@@ -127,7 +127,25 @@ const updateProfile = asyncHandler(async(req,res)=>{
 })
 
 
+const getProfile = asyncHandler(async(req,res)=>{
+    // get userid from cookies
+    // find user 
+    // return userProfile
+
+    const userId = req.user?._id
+    
+    const userProfile = await UserProfile.findOne({user:userId})
+    if(!userProfile){
+        throw new ApiError(404,"user profile not found");
+    }
+    return res.status(200).json(
+        new ApiResponse(200,userProfile,"user profile retrieve successfully")
+    )
+})
+
+
 export {
     configureProfile,
-    updateProfile
+    updateProfile,
+    getProfile
 }

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import upload from "../middlewares/multer.middleware.js";
-import { configureProfile , updateProfile} from "../controllers/userProfile.controllers.js";
+import { configureProfile , updateProfile , getProfile} from "../controllers/userProfile.controllers.js";
 import verifyJWT from "../middlewares/Auth.middleware.js";
 
 const router = Router();
@@ -32,6 +32,9 @@ router.route("/update-profile").post(
             maxCount:1
         }
     ]),
-    updateProfile)
+    updateProfile
+)
+
+router.route("/get-profile").get(verifyJWT,getProfile)
 
 export default router;

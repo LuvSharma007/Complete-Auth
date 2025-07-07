@@ -3,6 +3,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/authSlice';
+import { clearProfile } from '../../store/profileSlice';
 
 
 
@@ -13,6 +14,7 @@ const LogoutBtn = () => {
         try {
             await axios.post("/api/v1/users/logout");
             dispatch(logout());
+            dispatch(clearProfile());
             alert("User logout successfully !");
             navigate("/");
         } catch (error) {
