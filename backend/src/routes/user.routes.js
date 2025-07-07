@@ -13,5 +13,4 @@ router.route("/current-user").get(verifyJWT,getCurrentUser);
 
 
 
-
 export default router;

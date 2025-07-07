@@ -42,12 +42,13 @@ const uploadOnCloudinary = async (localFilePath)=>{
 }
 
 const deleteFromCloudinary = async (publicId)=>{
+    if(!publicId) return null;
     try {
         const deleteImage = await cloudinary.uploader.destroy(publicId)
         console.log('Cloudinary deleted image succesfully',deleteImage);        
         return deleteImage;
     } catch (error) {
-        throw ApiError(400,"Cloudinary file is not deleted",error)
+        throw new ApiError(400,"Cloudinary file is not deleted",error)
     }
 }
 
