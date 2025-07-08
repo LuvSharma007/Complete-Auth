@@ -1,13 +1,30 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
+import { clearProfile, setProfile } from '../store/profileSlice'
 
 const EditProfile = () => {
 
-  const {register , handleSubmit } = useForm()
+  const {register , handleSubmit,reset } = useForm()
+  const dispatch = useDispatch();
+  const userProfile = useSelector(state=>state.profile.profileData);
+
+  useEffect(()=>{
+    if(userProfile){
+      reset({
+        name:userProfile.name || '',
+        bio:userProfile.bio || '',
+        location:userProfile.location || '',
+        website:userProfile.website || ''
+      })
+    }
+  },[userProfile , reset])
+  
 
   const onSubmit = async (data)=>{
     try {
+      if(!userProfile){
       const formData = new FormData()
       formData.append('name',data.name)
       formData.append('bio',data.bio)
@@ -15,16 +32,46 @@ const EditProfile = () => {
       formData.append('website',data.website)
       formData.append('profileImage',data.profileImage[0])
       formData.append('coverImage',data.coverImage[0])
-
+      
       const response = await axios.post("/api/v1/userProfile/configure-profile",formData,{
         headers:{
           'Content-Type':'multipart/form-data'
         },
         withCredentials:true
       })
+      dispatch(setProfile(response.data.data))
 
-      console.log('configured profile',response.data);
+      // console.log('configured profile',response.data);
       alert("Profile configured Successfully")
+      }else{
+      dispatch(clearProfile());
+      const formData = new FormData()
+      formData.append('name',data.name)
+      formData.append('bio',data.bio)
+      formData.append('location',data.location)
+      formData.append('website',data.website)
+
+      if(data.profileImage && data.profileImage.length > 0){
+        formData.append('profileImage',data.profileImage[0])
+      }
+
+      if(data.coverImage && data.coverImage.length>0){
+        formData.append('coverImage',data.coverImage[0])
+      }
+
+      const response = await axios.post("/api/v1/userProfile/update-profile",formData,{
+        headers:{
+          'Content-Type':'multipart/form-data'
+        },
+        withCredentials:true
+      })
+
+      dispatch(setProfile(response.data.data))
+      
+
+      // console.log('configured profile',response.data);
+      alert("Profile updated Successfully")
+      }
       
     } catch (error) {
       console.error('error submitting form:',error.response?.data || error.message);

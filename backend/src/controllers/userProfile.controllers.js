@@ -84,22 +84,31 @@ const updateProfile = asyncHandler(async(req,res)=>{
         return res.status(404).json(new ApiResponse(404,null,"user not found"))
     }
 
+    console.log(userProfile.profileImage.publicId);
+    console.log(userProfile.coverImage.publicId);
+    
+    
     if(userProfile.profileImage?.publicId){
-        await deleteFromCloudinary(userProfile.profileImage.public_id);
+        await deleteFromCloudinary(userProfile.profileImage.publicId);
     }
 
     if(userProfile.coverImage?.publicId){
-        await deleteFromCloudinary(userProfile.coverImage.public_id);
+        await deleteFromCloudinary(userProfile.coverImage.publicId);
     }
 
+    const profileImageLocalPath = req.files?.profileImage?.[0]?.path
+    const coverImageLocalPath = req.files?.coverImage?.[0]?.path
 
-    const profileImageLocalPath = req.files?.profileImage[0]?.path
-    const coverImageLocalPath = req.files?.coverImage[0]?.path
-
-    const profileImage = await uploadOnCloudinary(profileImageLocalPath);
-    const coverImage = await uploadOnCloudinary(coverImageLocalPath);
-
+    let profileImage , coverImage;
     
+    if(profileImageLocalPath){
+        profileImage = await uploadOnCloudinary(profileImageLocalPath);
+    }
+
+    if(coverImageLocalPath){
+        coverImage = await uploadOnCloudinary(coverImageLocalPath);
+    }
+
     userProfile.name = name || userProfile.name
     userProfile.bio = bio || userProfile.bio
     userProfile.location = location || userProfile.location

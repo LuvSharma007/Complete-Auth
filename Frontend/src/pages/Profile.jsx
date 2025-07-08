@@ -22,7 +22,7 @@ const Profile = () => {
         if (userProfile?.data.data) {
           dispatch(setProfile(userProfile.data.data))
           setLocalProfile(userProfile.data.data)
-          console.log(userProfile.data.data);
+          // console.log(userProfile.data.data);
         }
       } catch (error) {
         console.log('Error getting user Profile', error);
@@ -35,7 +35,7 @@ const Profile = () => {
     }
   }, [dispatch, profile])
 
-  console.log(profile);
+  // console.log(profile);
 
   return (
     <div className="max-w-3xl mx-auto p-4">
