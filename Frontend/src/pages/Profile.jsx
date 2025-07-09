@@ -53,7 +53,7 @@ const Profile = () => {
               className="w-24 h-24 rounded-full border-4 border-white -mt-16"
             />
             <div>
-              <h2 className="text-2xl font-semibold">{localProfile.name}</h2>
+              <h2 className="text-gray-800 text-2xl font-semibold">{localProfile.name}</h2>
               <p className="text-gray-600">{localProfile.bio}</p>
               <p className="text-sm text-gray-500">{localProfile.location}</p>
               <a

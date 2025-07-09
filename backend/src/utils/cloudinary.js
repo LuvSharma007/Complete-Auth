@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
-import fs from "fs";
+import fs, { existsSync } from "fs";
 import dotenv from "dotenv"
 import ApiError from './ApiError.js';
 
@@ -32,6 +32,11 @@ const uploadOnCloudinary = async (localFilePath)=>{
     
         // file has been uploaded successfully
         console.log('Uploaded File',uploadedFile.url);
+        
+        if(existsSync(localFilePath)){
+            fs.unlinkSync(localFilePath)
+            console.log("remove file from localpath");
+        }
         return uploadedFile;
 
     } catch (error) {

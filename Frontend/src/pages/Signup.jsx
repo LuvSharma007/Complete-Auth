@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [form, setForm] = useState(
@@ -12,6 +13,7 @@ const Signup = () => {
 );
 
     const [error,setError] = useState('')
+    const navigate = useNavigate()
 
 
 
@@ -27,6 +29,7 @@ const Signup = () => {
         if(userCreated){
             alert("registered successfully!");
         }
+        navigate("/login")
     } catch (error) {
         if(error.response && error.response.data?.message){
             setError(error.response.data.message);

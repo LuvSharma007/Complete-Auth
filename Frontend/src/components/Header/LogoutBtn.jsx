@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/authSlice';
 import { clearProfile } from '../../store/profileSlice';
+import {persistor} from "../../store/configureStore"
 
 
 
@@ -15,6 +16,7 @@ const LogoutBtn = () => {
             await axios.post("/api/v1/users/logout");
             dispatch(logout());
             dispatch(clearProfile());
+            persistor.purge();
             alert("User logout successfully !");
             navigate("/");
         } catch (error) {
