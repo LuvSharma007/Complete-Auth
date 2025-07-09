@@ -39,7 +39,10 @@ const Profile = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      {localProfile ? (
+      {!localProfile && !profile ? ( <div>
+        <h1 className='text-center'>Please Configure your Profile !</h1>
+      </div> ): null }
+      {localProfile  ? (
         <div className="bg-white shadow-md rounded-lg overflow-hidden border-2">
           <img src={localProfile.coverImage?.url} alt="Cover" className="w-full h-40 object-cover" />
 
@@ -64,9 +67,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <p className="text-center text-gray-500">Loading profile...</p>
-      )}
+      ) : null }
       <button
       onClick={()=>{navigate("/edit-profile")}}
       className='bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition mt-10'

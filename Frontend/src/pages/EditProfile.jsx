@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { clearProfile, setProfile } from '../store/profileSlice'
+import { Navigate } from 'react-router-dom'
 
 const EditProfile = () => {
 
@@ -43,6 +44,7 @@ const EditProfile = () => {
 
       // console.log('configured profile',response.data);
       alert("Profile configured Successfully")
+      Navigate("/profile")
       }else{
       dispatch(clearProfile());
       const formData = new FormData()
@@ -72,6 +74,7 @@ const EditProfile = () => {
       // console.log('configured profile',response.data);
       alert("Profile updated Successfully")
       }
+      Navigate("/profile");
       
     } catch (error) {
       console.error('error submitting form:',error.response?.data || error.message);
